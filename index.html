@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bryggdata</title>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Open+Sans" rel="stylesheet">
+</head>
+<body>
+	<style>
+		body {
+			margin: 20px;
+			background: #f8f8f8;
+			font-family: "Open Sans";
+			text-align: center;
+		}
+
+		header {
+			text-align: center;
+		}
+
+		h1 {
+			font-family: 'Major Mono Display', monospace;
+			font-weight: 400;
+			/*border-bottom: 1px solid black;*/
+			display: inline-block;
+			margin: 15px 0 0;
+			padding-bottom: 8px;
+		}
+		#chart {
+			margin-top: 70px;
+			margin-bottom: 15px;
+		}
+
+		.button {
+			display: inline-block;
+			padding: 5px 10px;
+			margin: 10px;
+			cursor: pointer;
+			text-transform: uppercase;
+		    font-size: 12px;
+		    border: 1px solid black;
+		    transition: all 0.15s ease-out;
+		}
+
+		.button:hover {
+			background: #000;
+			color: white;
+		}
+
+		.tooltip {	
+		    position: absolute;
+		    text-align: center;
+		    padding: 8px;
+		    font-size: 14px;
+		    top: 100px;
+		    background: #f8f8f8;
+		    border: 1px solid #000;
+		    border-radius: 2px;
+		    pointer-events: none;
+		    /*width: 70px;	*/
+		}
+
+		.tooltip:before {
+			    content: '';
+			    position: absolute;
+			    bottom: 0;
+			    left: 50%;
+			    width: 0;
+			    height: 0;
+			    border: 8px solid transparent;
+			    border-top-color: #333;
+			    border-bottom: 0;
+			    margin-left: -8px;
+			    margin-bottom: -9px;
+			    z-index: 100;
+		}
+
+		.tooltip:after {
+			    content: '';
+			    position: absolute;
+			    bottom: 0;
+			    left: 50%;
+			    width: 0;
+			    height: 0;
+			    border: 8px solid transparent;
+			    border-top-color: #f8f8f8;
+			    border-bottom: 0;
+			    margin-left: -8px;
+			    margin-bottom: -7px;
+			    z-index: 100;
+		}
+
+		.plupp {
+			cursor: pointer;
+		}
+
+		.plupp:hover {
+			opacity: 1 !important;
+		}
+
+		.brewer-1, .brewer-2 {
+			background: #ffc6d0;
+			width: 50px;
+			height: 12px;
+			border-radius: 0%;
+			padding: 5px;
+			margin: auto;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 5px;
+		}
+
+		.brewer-2 {
+			background: #ffdfad;
+		}
+	</style>
+	<header><h1>brYggdata</h1></header>
+	
+	<div id="chart"></div>
+
+	<div class="button" id="js-toggle-dateformat">Toggle hours</div>
+	<div class="button" id="js-toggle-weekdays">Toggle weekdays</div>
+	<div class="button" id="js-sort-brewer">L | R</div>
+	<div class="button" id="js-sort-ampm">AM | PM</div>
+	<div class="button" id="js-color-brewer">Color</div>
+	<div class="button" id="js-show-brewercount">Show brewer count</div>
+	<div class="button" id="js-last-week">Last week</div>
+	
+<script src="data.js"></script>
+<script src="script.js"></script>
+<script src="calc.js"></script>
+	
+</body>
+</html>
