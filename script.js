@@ -6,12 +6,12 @@ function chart(data) {
     var formatHours = d3.timeFormat(dateFormat2);
     var parseDate = function(date) {
     	var parseFormat = d3.timeParse("%Y-%m-%d %H:%M:%S");
-    	console.log(parseFormat(date.substr(0, date.indexOf('.'))));
-    	return parseFormat(date.substr(0, date.indexOf('.')));
+    	// console.log(parseFormat(date.substr(0, date.indexOf('.'))));
+    	return parseFormat(date);
     };
     var parseHours = function(date) {
     	var parseFormat = d3.timeParse("%Y-%m-%d %H:%M:%S");
-    	return parseFormat(date.substr(0, date.indexOf('.'))).setFullYear(2020, 11, 3);
+    	return parseFormat(date).setFullYear(2020, 11, 3);
     };
     var width = 1300;
     var height = 470;
@@ -337,6 +337,35 @@ function chart(data) {
 		
 		showsBrewerCount = !showsBrewerCount;
 	}
+
+	document.getElementById("js-show-brewercount-day").addEventListener("click", showBrewsPerDay);
+	function showBrewsPerDay() {
+		var newDay = true;
+		var brewerCount = 0;
+		var currentDay = 0;
+
+		svg.selectAll('rect')
+			.transition()
+			.duration(1000)
+			.ease(d3.easeCubicOut)
+			.style("opacity", 0.55)
+			.attr("rx",0)
+    		.attr("ry",0)
+			.attr("y", function(d,i){
+				if (currentDay != parseDate(d.Time).getDay()){
+	                       		currentDay = parseDate(d.Time).getDay();
+	                       		newDay = true;
+	                       };
+	                       if(!newDay){
+	                       		brewerCount++;
+	                       } else {
+	                       		brewerCount = 0;
+	                       		newDay = false;
+	                       };
+
+	                       return height - 50 - brewerCount * 10;
+	                    });
+	}
 }
 
-chart(data);
+chart(data2);
